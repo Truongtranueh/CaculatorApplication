@@ -114,14 +114,14 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
             }
             "=" -> {
                 Solve()
-                answer = input
+//                answer = input
                 }
             "x" -> {
                 Solve()
                 input+= "*"
                 }
             else -> {
-                if (input ==null){
+                if (input == null){
                     input =""
                 }
 
@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
             var  s: List<String> = input.split("*")
             try {
                 var mul:Double = (s[0].toDouble() * s[1].toDouble())
-                input = mul.toString() +""
+                answer = mul.toString() +""
             }
             catch (e: Exception){
 
@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
             var  s: List<String> = input.split("/")
             try {
                 var mul:Double = (s[0].toDouble() / s[1].toDouble())
-                input = mul.toString() +""
+                answer = mul.toString() +""
             }
             catch (e: Exception){
 
@@ -162,7 +162,7 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
             var  s: List<String> = input.split("+")
             try {
                 var mul:Double = (s[0].toDouble() + s[1].toDouble())
-                input = mul.toString() +""
+                answer = mul.toString() +""
             }
             catch (e: Exception){
 
@@ -172,7 +172,7 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
             var  s: List<String> = input.split("-")
             try {
                 var mul:Double = (s[0].toDouble() - s[1].toDouble())
-                input = mul.toString() +""
+                answer = mul.toString() +""
             }
             catch (e: Exception){
 
@@ -182,20 +182,21 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
             var  s: List<String> = input.split("%")
             try {
                 var mul:Double = (s[0].toDouble() % s[1].toDouble())
-                input = mul.toString() +""
+                answer = mul.toString() +""
             }
             catch (e: Exception){
 
             }
         }
 
-        var listtmp: List<String> = input.split(".")
+        var listtmp: List<String> = answer.split(".")
         if(listtmp.size > 1){
             if(listtmp[1].equals("0")){
-                input = listtmp[0]
+                answer = listtmp[0]
             }
         }
     }
+
 
     override fun savedata(data: String) {
         Log.e("Hh",data)
