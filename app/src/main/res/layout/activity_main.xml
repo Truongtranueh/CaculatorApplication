@@ -15,8 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
@@ -38,7 +38,7 @@
         <TextView
             android:id="@+id/resulttxt"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:gravity="end"
             android:text="00"
             android:paddingRight="10dp"
@@ -338,6 +338,7 @@
         android:textColor="#7D5CB6"
         android:backgroundTint="#FFFFFF"
         android:drawableLeft="@drawable/ic_save"
+        app:layout_constraintTop_toBottomOf="@id/tableLayout"
         android:drawableTint="#7D5CB6"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"

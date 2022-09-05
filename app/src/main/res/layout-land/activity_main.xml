@@ -78,7 +78,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:text="C">
+                android:text="AC">
             </Button>
 
             <Button
@@ -105,7 +105,7 @@
                 android:layout_marginRight="10dp"
                 android:textColor="#091971"
                 android:layout_weight="1"
-                android:drawableRight="@drawable/ic_backspace"
+                android:text="C"
                 android:drawableTint="@color/white">
             </Button>
 
@@ -118,7 +118,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textColor="#091971"
-                android:text="÷"
+                android:text="/"
                 app:backgroundTint="#DDD1F3">
             </Button>
         </TableRow>
