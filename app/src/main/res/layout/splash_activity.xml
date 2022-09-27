@@ -12,8 +12,7 @@
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         app:lottie_rawRes="@raw/anicaculor"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

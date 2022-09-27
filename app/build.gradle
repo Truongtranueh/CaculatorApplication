@@ -5,6 +5,12 @@ plugins {
 
 android {
     compileSdk 32
+    dataBinding {
+        enabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
         applicationId "com.example.calculatorapp"
@@ -28,9 +34,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-    }
-    buildFeatures {
-        viewBinding true
     }
 }
 

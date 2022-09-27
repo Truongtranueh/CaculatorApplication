@@ -1,5 +1,7 @@
 package com.example.calculatorapp
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +17,6 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
     private lateinit var biding : ActivityMainBinding
     var input: String = ""
     var answer: String =""
-    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +36,11 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
-        biding.btnsave?.setOnClickListener{
-            val createbottomsheet : BottomSheetDialog = BottomSheetDialog(this)
-
-            createbottomsheet.show(supportFragmentManager,"OK")
-        }
+//        biding.btnsave?.setOnClickListener{
+//            val createbottomsheet : BottomSheetDialog = BottomSheetDialog(this)
+//
+//            createbottomsheet.show(supportFragmentManager,"OK")
+//        }
         biding.btnzero.setOnClickListener{
             ButtonClick(biding.btnzero.text.toString())
         }
@@ -97,10 +98,29 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
         biding.btndot.setOnClickListener{
             ButtonClick(biding.btndot.text.toString())
         }
+        var sharedPreference =  getSharedPreferences("DATARES", Context.MODE_PRIVATE)
 
-
+        var inputShared = sharedPreference.getString("input","")
+        var answerShared = sharedPreference.getString("answer","")
+        biding.inputnumber.setText(inputShared)
+        biding.resulttxt.text = answerShared
 
     }
+
+    override fun onStop() {
+        super.onStop()
+        var sharedPreference =  getSharedPreferences("DATARES", Context.MODE_PRIVATE)
+
+        var editor = sharedPreference.edit()
+        editor.putString("input",input)
+        editor.putString("answer",answer)
+        editor.commit()
+    }
+
+
+
+
+
     fun ButtonClick(s: String){
 //        var button: Button = view as Button
 //        var  data = button.text.toString()
@@ -114,7 +134,7 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
             }
             "=" -> {
                 Solve()
-//                answer = input
+//                input = answer
                 }
             "x" -> {
                 Solve()
@@ -196,8 +216,6 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
             }
         }
     }
-
-
     override fun savedata(data: String) {
         Log.e("Hh",data)
     }
