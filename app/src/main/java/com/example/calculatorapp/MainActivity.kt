@@ -1,7 +1,10 @@
 package com.example.calculatorapp
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,35 +15,21 @@ import com.example.calculatorapp.databinding.ActivityMainBinding
 import java.lang.Exception
 
 
-class MainActivity : AppCompatActivity(), ClickSaveData {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var biding : ActivityMainBinding
     var input: String = ""
     var answer: String =""
+    var isChecked: Boolean = true
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         biding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(biding.root)
-
-
-        biding.switchchangetheme.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked){
-                Log.e("Check","ON")
-                biding.txtswitch.text = "SWITCH TO LIGH THEME"
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
-            else{
-                Log.e("Check","OFF")
-                biding.txtswitch.text = "SWITCH TO DARK THEME"
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
+        biding.btnmoon.setOnClickListener{
+            changeTheme()
         }
-//        biding.btnsave?.setOnClickListener{
-//            val createbottomsheet : BottomSheetDialog = BottomSheetDialog(this)
-//
-//            createbottomsheet.show(supportFragmentManager,"OK")
-//        }
         biding.btnzero.setOnClickListener{
             ButtonClick(biding.btnzero.text.toString())
         }
@@ -98,32 +87,41 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
         biding.btndot.setOnClickListener{
             ButtonClick(biding.btndot.text.toString())
         }
-        var sharedPreference =  getSharedPreferences("DATARES", Context.MODE_PRIVATE)
 
+        var sharedPreference =  getSharedPreferences("DATARES", Context.MODE_PRIVATE)
         var inputShared = sharedPreference.getString("input","")
         var answerShared = sharedPreference.getString("answer","")
-        biding.inputnumber.setText(inputShared)
+        biding.inputnumber.text = inputShared
         biding.resulttxt.text = answerShared
-
     }
-
     override fun onStop() {
         super.onStop()
-        var sharedPreference =  getSharedPreferences("DATARES", Context.MODE_PRIVATE)
 
+        var sharedPreference =  getSharedPreferences("DATARES", Context.MODE_PRIVATE)
         var editor = sharedPreference.edit()
         editor.putString("input",input)
         editor.putString("answer",answer)
         editor.commit()
     }
-
-
-
-
+    @SuppressLint("ResourceAsColor")
+    fun changeTheme(){
+        if(isChecked){
+            biding.inputnumber.setTextColor(Color.WHITE)
+            biding.resulttxt.setTextColor(Color.WHITE)
+            biding.constrainmain.setBackgroundColor(Color.BLACK)
+            biding.btnmoon.setBackgroundResource(R.drawable.ic_moonafter)
+            isChecked = false
+        }
+        else if(!isChecked){
+            biding.inputnumber.setTextColor(Color.BLACK)
+            biding.resulttxt.setTextColor(Color.BLACK)
+            biding.constrainmain.setBackgroundColor(Color.WHITE)
+            biding.btnmoon.setBackgroundResource(R.drawable.ic_moonbefore)
+            isChecked = true
+        }
+    }
 
     fun ButtonClick(s: String){
-//        var button: Button = view as Button
-//        var  data = button.text.toString()
         when(s){
             "AC" -> {input = ""
                      answer ="00"
@@ -144,14 +142,11 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
                 if (input == null){
                     input =""
                 }
-
                 if (s.equals("+") || s.equals("-") || s.equals("/")){
-                    //in kq
                     Solve()
                 }
                 input += s
             }
-
         }
         biding.inputnumber.setText(input)
         biding.resulttxt.text = answer
@@ -165,7 +160,6 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
                 answer = mul.toString() +""
             }
             catch (e: Exception){
-
             }
         }
         if(input.split("/").size == 2){
@@ -175,7 +169,6 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
                 answer = mul.toString() +""
             }
             catch (e: Exception){
-
             }
         }
         if(input.split("+").size == 2){
@@ -185,7 +178,6 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
                 answer = mul.toString() +""
             }
             catch (e: Exception){
-
             }
         }
         if(input.split("-").size == 2){
@@ -205,7 +197,6 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
                 answer = mul.toString() +""
             }
             catch (e: Exception){
-
             }
         }
 
@@ -215,9 +206,6 @@ class MainActivity : AppCompatActivity(), ClickSaveData {
                 answer = listtmp[0]
             }
         }
-    }
-    override fun savedata(data: String) {
-        Log.e("Hh",data)
     }
 
 }

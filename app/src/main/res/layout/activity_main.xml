@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constrainmain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -17,14 +18,14 @@
 
         <TextView
             android:id="@+id/inputnumber"
-            android:layout_gravity="right"
-            android:paddingRight="10dp"
-            android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@null"
+            android:textColor="@color/black"
             android:gravity="end"
-            android:text="00">
-        </TextView>
+            android:paddingRight="10dp"
+            android:text="00"></TextView>
 
         <TextView
             android:id="@+id/resulttxt"
@@ -32,35 +33,23 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:text="00"
+            android:textColor="@color/black"
             android:paddingRight="10dp"
             android:textStyle="bold"
             android:textSize="40dp">
         </TextView>
     </LinearLayout>
 
-    <Switch
-        android:id="@+id/switchchangetheme"
+    <ImageButton
+        android:id="@+id/btnmoon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:padding="10dp"
-        android:scaleX="1.5"
-        android:scaleY="1.5"
-        android:thumbTint="#EABD70"
+        android:background="@drawable/ic_moonbefore"
         app:layout_constraintBottom_toTopOf="@id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-    </Switch>
-
-    <TextView
-        android:id="@+id/txtswitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="SWITCH TO DARK THEME"
-        app:layout_constraintStart_toEndOf="@+id/switchchangetheme"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-    </TextView>
+    </ImageButton>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -68,7 +57,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchchangetheme">
+        app:layout_constraintTop_toBottomOf="@+id/btnmoon">
 
         <LinearLayout
             android:layout_width="match_parent"
